@@ -1,5 +1,12 @@
 # Functional Design Document
 
+<strong>Guyer's Stuff</strong>
+<ol>
+        <li>User's experience - who is my user?</li>
+        <li>Use cases - maybe as flow chart</li>
+        <li>Wireframes</li>
+</ol>
+
 Purpose Statement
 
         [Short section describing the purpose of project. Why does the client need
@@ -15,8 +22,7 @@ Client Information
 
 Team Information
 
-        [Members, skill levels, delegation, responsibilities, divide up modules]
-
+        Ethan Donowitz, Hayley Cohen, Danielle Zelin, Brett Fouss
 
 Project Scope
 
@@ -24,7 +30,6 @@ Project Scope
         much detail here, do that in the “Overview of Requirements” section. ]
 
 End Users & Use Cases
-
 
         [List and describe the end users and several possible use cases of this
         application. End users are the people who will be using your application.
