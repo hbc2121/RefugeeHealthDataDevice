@@ -89,3 +89,20 @@ Security
         to secure your site? List any technologies, libraries or packages you need. Talk
         to a Project Manager for recommendations.]
 
+Motivation
+----------
+Throughout Europe and Asia, refugees are being trafficked from place to place, 
+and doctors have a difficult time keeping track of their medical histories.
+Our platform will provide doctors with a robust way to keep track of the 
+locations and medical histories of refugees. Through two-factor authentication
+and encrypted data storage, our application will ensure that human traffickers
+and untrusted members of the refugee camps will not be able to access any
+confidential medical information.
+
+Further, our application will provide statistics about the medical histories
+of these refugees. This will allow public health organizations like WHO to
+analyze epidemiological trends, making it easier to control the spread of
+disease throughout refugee camps. It will also allow lobbyists to cite real data
+when appealing to the UN for more support for these refugees.
+
+
