@@ -1,15 +1,5 @@
 # Functional Design Document
 
-
-
-
-<strong>Guyer's Stuff</strong>
-<ol>
-        <li>User's experience - who is my user?</li>
-        <li>Use cases - maybe as flow chart</li>
-        <li>Wireframes</li>
-</ol>
-
 Purpose Statement
 
         To create a phone application for doctors in refugee camps to securely
@@ -17,10 +7,7 @@ Purpose Statement
 
 Client Information
 
-        [Write up a short summary of the client. Who are they, what is their mission
-        statement, where are they located, how big or small are they? The more detail,
-        the better. Talk about how much funding they have and how much technical
-        resources they have.]
+        Dr. Mollica - Director of the Harvard Program in Refugee Trauma 
 
 
 Team Information
@@ -84,20 +71,23 @@ Project Scope
 
 End Users & Use Cases
 
-        [List and describe the end users and several possible use cases of this
-        application. End users are the people who will be using your application.
-        There may be several different types of end users, and each may use the
-        application differently. Use cases describes the possible ways each end
-        user will interact with the app. Here’s an example:
-
-                End User: Administrator
-                Administrator Use Cases:
-                        The administrator may add, remove and delete user profiles.
-                        The administrator may view metrics on site usage.
-                        etc.
-
-        Note that the use cases are described using active verbs. They may or
-        may not be specific to a single end user.]
+        End User: Dr. Mollica
+        Dr. Mollica Use Cases: 
+                - Super user for the system
+                - Log in to the application (ideally with network connectivity)
+                - View specific patient records
+                - Mide data and obtain data visualizations (ie. How many patients were given penicillin)
+        
+       End User: Refugee Camp Doctors
+       Doctor Use Cases:
+                - Log in with credentials and biometrics
+                - View patient records
+                - Push data to database if collected with network connection
+                - Enter data during a patient visit;
+                        - Patient authenticates with bracelet and biometrics
+                        - If it's the patients first visit, doctor will ask all of the HTQ (Harvard Trauma Questionnaire) 
+                        - If it's not the patients first visit, doctor will only ask ten critical questions
+                        - If there is network conenction, doctor can add and retrieve information from database
 
 Overview of Requirements
 
