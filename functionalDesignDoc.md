@@ -61,13 +61,8 @@ Existing Technology
 Questions:
 
         1. If family members can access their own families health records, will that be
-        in issue in the case of sexual assault?
+           in issue in the case of sexual assault?
         2. Do we need the bracelet?
-
-Project Scope
-
-        [The scope is a high-level description of the project. Don’t go into too
-        much detail here, do that in the “Overview of Requirements” section. ]
 
 End Users & Use Cases
 
@@ -88,6 +83,14 @@ End Users & Use Cases
                         - If it's the patients first visit, doctor will ask all of the HTQ (Harvard Trauma Questionnaire) 
                         - If it's not the patients first visit, doctor will only ask ten critical questions
                         - If there is network conenction, doctor can add and retrieve information from database
+
+Wireframes
+
+![](wireframes/capstone1.png?raw=true)
+![](wireframes/capstone2.png?raw=true)
+![](wireframes/capstone3.png?raw=true)
+![](wireframes/capstone4.png?raw=true)
+![](wireframes/capstone5.png?raw=true)
 
 Overview of Requirements
 
