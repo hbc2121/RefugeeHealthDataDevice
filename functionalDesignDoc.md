@@ -28,6 +28,7 @@ Team Information
         Ethan Donowitz, Hayley Cohen, Danielle Zelin, Brett Fouss
 
 Problem
+
         The goal of this project is to create a phone application for doctors in refugee
         camps to record patient health data. We will use two factor authentication - one
         is the patients finger print, and the second is an RFID bracelet created by CE
