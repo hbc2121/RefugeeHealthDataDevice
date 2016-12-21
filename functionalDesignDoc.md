@@ -92,46 +92,33 @@ Wireframes
 ![](wireframes/capstone4.png?raw=true)
 ![](wireframes/capstone5.png?raw=true)
 
-Overview of Requirements
+Evaluation
 
-        [While the scope of a project is a high-level description, the requirements
-        are an outline of it’s features. Requirements specify all aspects of each
-        use case, together, they describe the functionality of the app. We imagine
-        that the goal of the development process is to satisfy (implement) all of
-        the requirements of the project.]
+        The success of our project will be evaluated on several levels. Our sponsors
+        would like begin using our product in May meaning that all of the components
+        must work completely. Some of the criteria that the sponsors will use to
+        evaluate are projects include:
+            1. Can a doctor add a new user (with the bracelet and thumbprint)?
+            2. When it is a new user, can the doctor fill out the patient information?
+            3. When there is an existing user, can the doctor access the records using
+               the bracelet and thumbprint?
+            4. Can a doctor successfully sign in with special privileges with a bracelet
+               and thumbprint?
+            5. Are there super user capabilities for Dr. Mollica?
+            6. Can the product scale?
+            7. Is it secure? - static analysis
+            8. Is each patient visit recorded in the database with a timestamp,
+               location, and the updated health questions?
+            9. Is there a way to view all statistics and apply filters?
+            10. Is the data stored locally if there is no internet connection?
 
-Technology Stack
+        We will need to ensure that all the required components are working
+        correctly and we will need to run our product through a few tests to ensure that
+        it will scale safely considering many doctors will be using this from many
+        countries. Security will also be a big concern of ours. Because Dr. Mollica
+        doesn't have a computer science technical background, it is our responsibility
+        to ensure the technical components are working correctly.
+        
 
-        [Talk about what technologies you will use to develop this application. This
-        can be in the form of a numbered list of each technology, and perhaps a brief
-        description of each.]
 
-Implementation Overview
-
-        [Here, briefly discuss how the application will be implemented. What modules
-        will you create, and what are their interfaces? How will they interact? The
-        purpose of this is to get your team started thinking about how to proceed
-        coding; however, agile development assumes that these details will change
-        significantly throughout the course of development.]
-
-Other
-
-        [These sections may or may not be applicable to your project.]
-
-Testing and Test Cases
-
-        [Talk about what test strategies you will use to test your application. What
-        test cases can you devise to comprehensively test each use case? 
-
-Maintenance
-
-        [How will you construct your site to be maintainable and scalable? What happens
-        when the technology used to construct your application becomes depreciated? Will
-        it be possible to add requirements and features?]
-
-Security
-
-        [How will you protect and secure your client’s data? What measures will you take
-        to secure your site? List any technologies, libraries or packages you need. Talk
-        to a Project Manager for recommendations.]
 
