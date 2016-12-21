@@ -66,6 +66,19 @@ Questions:
 
 End Users & Use Cases
 
+        The users of our project will be Dr. Mollica and the doctors stationed in the refugee camps. 
+        Dr. Mollica is the client for this project who will oversee and deploy our project at the camps. 
+        There are about 6 or 7 camps, each with doctors who will be using the application during 
+        patient visits. 
+        
+        The refugees located in the camps will also be users as they will be wearing the bracelets and will 
+        be visiting the doctors using our technology. The doctors are located in remote areas without strong
+        connectivity and with minimal resources. Therefore, our project needs to function both with and 
+        without connection to the internet. The refugees must be able to keep their healthcare information 
+        extremely secure as well, which will act as a constraint as well. There are two different user stories 
+        for our project, one is the user experience of Dr. Mollica and the other is the user experience of a 
+        doctor stationed in the refugee camp. 
+        
         End User: Dr. Mollica
         Dr. Mollica Use Cases: 
                 - Super user for the system
@@ -91,7 +104,21 @@ Wireframes
 ![](wireframes/capstone3.png?raw=true)
 ![](wireframes/capstone4.png?raw=true)
 ![](wireframes/capstone5.png?raw=true)
+Goals
 
+        The first level of achievment will be creting the database to store all of the 
+        healthcare information about the refugees. The doctor will be able to ask the 
+        patient questions and store them in the database. 
+        
+        The second level of achievment will be incorporating the database with the authentication
+        previously developed and create a full application. This finished application will present
+        the questions to the doctor and allow them to answer them within the application. The 
+        application will also implement the two-factor authenitication, integrated with the RFID
+        bracelets.
+        
+        Once these two levels are achieved, there will be other smaller facets to complete such as
+        creating data visualizations based on the healthcare information.
+        
 Evaluation
 
         The success of our project will be evaluated on several levels. Our sponsors
