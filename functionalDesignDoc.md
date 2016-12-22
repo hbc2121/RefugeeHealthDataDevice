@@ -50,6 +50,7 @@ Motivation
         when appealing to the UN for more support for these refugees.
 
 Sponsor's Goals
+
 	The sponsor for our project is Dean Karen Panetta. This is a project she
 	has overseen for over a year, so she dictated what most of our goals for the
 	project are. By the end of the year, Dean Panetta needs to have a
