@@ -49,6 +49,15 @@ Motivation
         disease throughout refugee camps. It will also allow lobbyists to cite real data
         when appealing to the UN for more support for these refugees.
 
+Sponsor's Goals
+	The sponsor for our project is Dean Karen Panetta. This is a project she
+	has overseen for over a year, so she dictated what most of our goals for the
+	project are. By the end of the year, Dean Panetta needs to have a
+	working application that provides a method for doctors to securely and
+	privately record data for the refugees they treat. Throughout the course
+	of the project, we will be in contact with her and Dr. Mollica, who is
+	one of doctors who will eventually use our application
+
 Existing Technology
 
         While there are applications for doctors to record patient health information,
