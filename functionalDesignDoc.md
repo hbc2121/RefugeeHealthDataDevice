@@ -49,6 +49,16 @@ Motivation
         disease throughout refugee camps. It will also allow lobbyists to cite real data
         when appealing to the UN for more support for these refugees.
 
+Sponsor's Goals
+
+	The sponsor for our project is Dean Karen Panetta. This is a project she
+	has overseen for over a year, so she dictated what most of our goals for the
+	project are. By the end of the year, Dean Panetta needs to have a
+	working application that provides a method for doctors to securely and
+	privately record data for the refugees they treat. Throughout the course
+	of the project, we will be in contact with her and Dr. Mollica, who is
+	one of doctors who will eventually use our application
+
 Existing Technology
 
         While there are applications for doctors to record patient health information,
@@ -66,6 +76,19 @@ Questions:
 
 End Users & Use Cases
 
+        The users of our project will be Dr. Mollica and the doctors stationed in the refugee camps. 
+        Dr. Mollica is the client for this project who will oversee and deploy our project at the camps. 
+        There are about 6 or 7 camps, each with doctors who will be using the application during 
+        patient visits. 
+        
+        The refugees located in the camps will also be users as they will be wearing the bracelets and will 
+        be visiting the doctors using our technology. The doctors are located in remote areas without strong
+        connectivity and with minimal resources. Therefore, our project needs to function both with and 
+        without connection to the internet. The refugees must be able to keep their healthcare information 
+        extremely secure as well, which will act as a constraint as well. There are two different user stories 
+        for our project, one is the user experience of Dr. Mollica and the other is the user experience of a 
+        doctor stationed in the refugee camp. 
+        
         End User: Dr. Mollica
         Dr. Mollica Use Cases: 
                 - Super user for the system
@@ -91,6 +114,71 @@ Wireframes
 ![](wireframes/capstone3.png?raw=true)
 ![](wireframes/capstone4.png?raw=true)
 ![](wireframes/capstone5.png?raw=true)
+
+Goals
+
+        The first level of achievment will be creting the database to store all of the 
+        healthcare information about the refugees. The doctor will be able to ask the 
+        patient questions and store them in the database. 
+        
+        The second level of achievment will be incorporating the database with the authentication
+        previously developed and create a full application. This finished application will present
+        the questions to the doctor and allow them to answer them within the application. The 
+        application will also implement the two-factor authenitication, integrated with the RFID
+        bracelets.
+        
+        Once these two levels are achieved, there will be other smaller facets to complete such as
+        creating data visualizations based on the healthcare information.
+
+
+Major technical components
+
+	Two-Factor Authentication System
+
+		In order to improve the security of the application, and in particular to
+		aid in the hiding of refugee data from sex traffickers and malicious family
+		members, we will need to interface with a two-factor authentication system
+		that was developed by a previous Senior Design project team.
+
+		Thus, aside from learning how to interface with the system, we do not
+		believe this task will be complicated. 
+
+	Front-End Module
+
+		Several different front-end experiences will be designed and implemented
+		for the different end users who will be using the application. While the
+		interface for a doctor will be quite simple, we aim to do extensive user
+		interviews in order to identify what interfaces would be most useful for
+		a "superuser" who has access to all data in the system. We plan on designing
+		data visualizations that enable superusers to explore and understand the
+		refugee data from a high-level, in order to identify trends and inform
+		decision making.
+
+		The front-end module will also have to deal with poor network connectivity.
+		We believe this will be the greatest challenge we face. We must figure out
+		how to store the data on the local machine wihtout compromising security.
+		This may entail learning different techniques for different mobile architectures.
+		We also have to develop the logic behind updating the database when the user
+		gains network access. We'll have to figure out how to resolve any descrepancies
+		or conflicts when data points are updated all at once.
+
+	Database and Back-End Module
+
+		Our server will be implemented as a simple REST api. We want most of the
+		code to be front-end. The back-end will simply serve as an interface
+		between the front-end and the database. We do not believe our database
+		will be complicated, although implementing it will be new for all of
+		us. 
+
+	VPN Connection
+
+		Our client has expressed that initially, the database and server code will
+		be hosted on Tufts servers. In order to ensure the safe transfer of data,
+		we aim to require users in the field to securely connect to the back-end
+		servers through a VPN.
+
+		This portion is entirely new for us, so we plan to spend quite a bit of
+		effort figuring out how to implement this.
 
 Evaluation
 
