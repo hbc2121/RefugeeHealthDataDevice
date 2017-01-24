@@ -1,5 +1,9 @@
 angular.module('starter.services', [])
 
+.service('AuthService', function($q, $http, USER_ROLES,) {
+        // TODO: finish this obv
+})
+
 .factory('Questions', function($http) {
 
         return {
