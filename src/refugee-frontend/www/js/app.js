@@ -31,6 +31,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('doctor-login', {
+    url: '/doctor-login',
+    templateUrl: 'templates/doctor-login.html',
+    controller: 'DoctorLoginCtrl'
+  })
+
+  //
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: '/tab',
@@ -57,18 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'ExistingPatientCtrl'
       }
     }
-  })
-
-  .state('doctor-login', {
-    url: '/doctor-login',
-    views: {
-      'tab-doctor-login': {
-        templateUrl: 'templates/doctor-login.html',
-        controller: 'DoctorLoginCtrl'
-      }
-    }
   });
-
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/existing-patient');

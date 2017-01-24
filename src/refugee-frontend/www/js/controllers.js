@@ -10,4 +10,11 @@ angular.module('starter.controllers', [])
         });
 })
 
-.controller('DoctorLoginCtrl', function($scope) {});
+.controller('DoctorLoginCtrl', function($scope, $state) {
+
+    $scope.submit = function() {
+        console.log("trying to go somewhere");
+        $state.transitionTo('tab.overview');
+    }
+
+});
