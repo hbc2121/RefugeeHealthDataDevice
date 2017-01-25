@@ -7,13 +7,26 @@ angular.module('starter.services', [])
 .factory('Questions', function($http) {
 
         return {
-                all: function() {
+                existing_patient_questions: function() {
 
                         var promise =  $http({
                                 method: "GET",
                                 url: "dummy-question-data.json"
                         }).then(function success(response) {
-                                console.log("got data");
+                                return response.data;
+                        }, function failure(response) {
+                                console.log("did not get data");
+                        });
+
+                        return promise;
+
+                },
+                new_patient_questions: function() {
+
+                        var promise =  $http({
+                                method: "GET",
+                                url: "dummy-new-patient-data.json"
+                        }).then(function success(response) {
                                 return response.data;
                         }, function failure(response) {
                                 console.log("did not get data");

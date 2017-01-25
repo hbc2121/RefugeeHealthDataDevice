@@ -1,54 +1,39 @@
-<ion-side-menus>
+<ion-view>
+        <ion-side-menus>
+                <!-- Center content -->
+                <div class="bar bar-header bar-stable">
+                        <h1 class="title">Standard Questions</h1>
+                </div>
+                <ion-side-menu-content class="padding has-header">
+                        <ul class="list card">
+                                      <li class="item item-icon-right" ng-repeat="question in questions">
+                                                <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
+                                        {{ question.body }}
+                                </li>
+                        </ul>
+                        <button ng-click="submit()" class="button button-block button-positive">
+                                Submit
+                        </button>
+                </ion-side-menu-content>
 
-    <!-- Center content -->
-    <ion-side-menu-content>
-        <ion-content>
-            <ul class="list card">
-                      <li class="item item-icon-right">
-                            <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
-                            Question 1
-                          </li>
-
-                      <li class="item item-icon-right">
-                            <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
-                            Question 2
-                          </li>
-
-                      <li class="item item-icon-right">
-                            <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
-                            Question 3
-                          </li>
-
-                      <li class="item item-icon-right">
-                            <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
-                            Question 4
-                          </li>
-
-                    </ul>
-            <button ng-click="submit()" class="button button-block button-positive">
-                Submit
-            </button>
-        </ion-content>
-    </ion-side-menu-content>
-
-    <!-- Left menu -->
-    <ion-side-menu side="left">
-        <ion-content>
-            <ul class="list card">
-                        <li class="item item-icon-right">
-                                <i class="icon"><ion-checkbox
-                                               ng-model="filter.red"></ion-checkbox></i>Head Trauma
-                                               </li>
-                        <li class="item item-icon-right">
-                                <i class="icon"><ion-checkbox
-                                               ng-model="filter.red"></ion-checkbox></i>Mental Health
-                                               </li>
-                        <li class="item item-icon-right">
-                                <i class="icon"><ion-checkbox
-                                               ng-model="filter.red"></ion-checkbox></i>Personal Description
-                                               </li>
-            </ul>
-                </ion-content>
-    </ion-side-menu>
-
-</ion-side-menus>
+                <!-- Left menu -->
+                <ion-side-menu side="left">
+                        <ion-content>
+                                <ul class="list card">
+                                                <li class="item item-icon-right">
+                                                            <i class="icon"><ion-checkbox
+                                                                           ng-model="filter.red"></ion-checkbox></i>Head Trauma
+                                                                   </li>
+                                                <li class="item item-icon-right">
+                                                            <i class="icon"><ion-checkbox
+                                                                           ng-model="filter.red"></ion-checkbox></i>Mental Health
+                                                                   </li>
+                                                <li class="item item-icon-right">
+                                                            <i class="icon"><ion-checkbox
+                                                                           ng-model="filter.red"></ion-checkbox></i>Personal Description
+                                                                   </li>
+                                </ul>
+                                    </ion-content>
+                </ion-side-menu>
+        </ion-side-menus>
+</ion-view>
