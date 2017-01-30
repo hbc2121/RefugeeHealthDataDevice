@@ -13,7 +13,10 @@ angular.module('starter.services', [])
                                 method: "GET",
                                 url: "dummy-question-data.json"
                         }).then(function success(response) {
-                                return response.data;
+                                var questionData = {};
+                                questionData.categories = Object.keys(response.data);
+                                questionData.questions = response.data;
+                                return questionData;
                         }, function failure(response) {
                                 console.log("did not get data");
                         });
@@ -27,7 +30,10 @@ angular.module('starter.services', [])
                                 method: "GET",
                                 url: "dummy-new-patient-data.json"
                         }).then(function success(response) {
-                                return response.data;
+                                var questionData = {};
+                                questionData.categories = Object.keys(response.data);
+                                questionData.questions = response.data;
+                                return questionData;
                         }, function failure(response) {
                                 console.log("did not get data");
                         });
