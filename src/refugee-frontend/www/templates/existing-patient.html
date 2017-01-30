@@ -1,20 +1,23 @@
 <ion-side-menus>
-        <!-- Center content -->
-        <ion-side-menu-content>
-                <ion-content>
-                        <ul class="list card">
-                                      <li class="item item-icon-right" ng-repeat="question in questions">
-                                                <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
-                                                {{ question.body }}
-                                              </li>
-                                    </ul>
-                        <button ng-click="submit()" class="button button-block button-positive">
-                                Submit
-                        </button>
-                </ion-content>
-        </ion-side-menu-content>
+    <!-- Center content -->
+    <ion-side-menu-content>
+        <header class="bar bar-header bar-stable">
+            <h1 class="title">{{ selected }}</h1>
+        </header>
+        <ion-content>
+            <ul class="list card">
+                      <li class="item item-icon-right" ng-repeat="question in questions">
+                            <i class="icon"><label class="toggle toggle-balanced"><input type="checkbox"><div class="track"><div class="handle"></div></div></label></i>
+                    {{ question.body }}
+                          </li>
+                    </ul>
+            <button ng-click="submit()" class="button button-block button-positive">
+                Submit
+            </button>
+        </ion-content>
+    </ion-side-menu-content>
 
-        <!-- Left menu -->
+    <!-- Left menu -->
     <ion-side-menu side="left">
         <header class="bar bar-header bar-stable">
             <h1 class="title">Categories</h1>
@@ -22,7 +25,7 @@
         <ion-content class="has-header">
             <ion-list>
                 <ion-item menu-close ng-repeat="category in categories"
-                    ng-click="update(category)">
+                                     ng-click="update(category)">
                     {{ category }}
                 </ion-item>
             </ion-list>

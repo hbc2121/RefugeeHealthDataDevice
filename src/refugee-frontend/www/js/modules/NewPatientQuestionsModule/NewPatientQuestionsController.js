@@ -1,7 +1,6 @@
 angular.module('NewPatientQuestionsModule')
 .controller('NewPatientQuestionsCtrl', function($scope, $state, Questions) {
 
-    var selected = "";
     var questions = [];
 
     Questions.new_patient_questions().then(function (data) {
@@ -11,8 +10,8 @@ angular.module('NewPatientQuestionsModule')
     });
 
     $scope.update = function(category) {
-        selected = category;
-        $scope.questions = questions[selected];
+        $scope.selected = category;
+        $scope.questions = questions[category];
     }
 
     $scope.submit = function() {
