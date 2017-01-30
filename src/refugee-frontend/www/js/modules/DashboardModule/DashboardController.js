@@ -1,2 +1,2 @@
 angular.module('DashboardModule')
-.controller('DashCtrl', function($scope) {});
+.controller('DashboardCtrl', function($scope) {});

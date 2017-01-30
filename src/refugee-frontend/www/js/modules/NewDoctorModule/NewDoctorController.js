@@ -1,4 +1,4 @@
-angular.module('NewDoctorCtrl')
+angular.module('NewDoctorModule')
 .controller('NewDoctorCtrl', function($scope, $state) {
 
     $scope.submit = function() {

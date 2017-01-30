@@ -76,7 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                 views: {
                         'tab-overview': {
                                 templateUrl: 'templates/tab-overview.html',
-                                controller: 'OverviewCtrl'
+                                controller: 'DashboardCtrl'
                         }
                 }
         })

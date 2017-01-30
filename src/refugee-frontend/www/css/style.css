@@ -1,1 +1,18 @@
-/* Empty. Add your own CSS if you like */
+.list .item {
+        white-space: normal;
+}
+
+.item-input-inset {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        float: right;
+}
+
+.select-button {
+        margin: 3px;
+}
+
+.custom-text {
+        max-width: 60%;
+        float: left;
+}
