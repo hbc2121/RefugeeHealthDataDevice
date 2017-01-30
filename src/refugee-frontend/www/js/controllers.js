@@ -38,9 +38,19 @@ angular.module('starter.controllers', [])
 
 .controller('ExistingPatientCtrl', function($scope, $state, Questions) {
 
-    Questions.existing_patient_questions().then(function (data) {
-        $scope.questions = data.questions
+    var selected = "";
+    var questions = [];
+
+    Questions.new_patient_questions().then(function (data) {
+        questions = data.questions;
+        $scope.categories = data.categories;
+        $scope.update(data.categories[0]);
     });
+
+    $scope.update = function(category) {
+        selected = category;
+        $scope.questions = questions[selected];
+    }
 
     $scope.submit = function() {
         $state.transitionTo('visit-confirmation');
@@ -58,9 +68,19 @@ angular.module('starter.controllers', [])
 
 .controller('NewPatientQuestionsCtrl', function($scope, $state, Questions) {
 
+    var selected = "";
+    var questions = [];
+
     Questions.new_patient_questions().then(function (data) {
-        $scope.questions = data.questions
+        questions = data.questions;
+        $scope.categories = data.categories;
+        $scope.update(data.categories[0]);
     });
+
+    $scope.update = function(category) {
+        selected = category;
+        $scope.questions = questions[selected];
+    }
 
     $scope.submit = function() {
         $state.transitionTo('visit-confirmation');
