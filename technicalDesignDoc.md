@@ -1,6 +1,18 @@
 # Technical Design Document
 
 # Status Reports
+<strong>1/30/17</strong>
+<p>
+       We've been working consistenly on the first phase of our project. We have a front
+       end that allows users to login or create a new account. We also display questions
+       and have toggles to answer them. We ahave the beginning of a backend, which
+       serves data to the front end and is hosted on a heroku server set up.
+</p>
+<p>
+        We met with Panetta and a few members of Dr.Mollicas team and came out of the 
+        meeting extremely agggrevated. We are hoping to have a meeting with you (Sam)
+        to discuss what happened and what we can do from here.
+</p>
 <strong>1/23/17</strong>
 <p>
         We didn't do any real work over the break, but we are energized, excited and
