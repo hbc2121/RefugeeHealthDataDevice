@@ -1,6 +1,19 @@
 # Technical Design Document
 
 # Status Reports
+<strong>2/6/17</strong>
+<p>
+       We're just about done with Phase 1 of our project. We have a front-end that 
+       displays all of the questions and has toggles/dropdowns/textboxes for the 
+       clinicians to fill in when they are with a patient. We are working on sending
+       that information to be a PDF that can be downloaded and we're almost done 
+       implementing that. Our next step after this week will be to implement the
+       authentication and storing/retreiving the data.
+</p>
+<p>
+        We met with Panetta and a few members of Dr.Mollicas team and came out of the 
+        meeting extremely agggrevated. We are hoping to have a meeting with you (Sam)
+        to discuss what happened and what we can do from here.
 <strong>1/30/17</strong>
 <p>
        We've been working consistenly on the first phase of our project. We have a front
