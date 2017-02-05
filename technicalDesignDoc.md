@@ -10,10 +10,6 @@
        implementing that. Our next step after this week will be to implement the
        authentication and storing/retreiving the data.
 </p>
-<p>
-        We met with Panetta and a few members of Dr.Mollicas team and came out of the 
-        meeting extremely agggrevated. We are hoping to have a meeting with you (Sam)
-        to discuss what happened and what we can do from here.
 <strong>1/30/17</strong>
 <p>
        We've been working consistenly on the first phase of our project. We have a front
