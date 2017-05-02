@@ -1,9 +1,12 @@
 // TODO: REMOVE THIS "STARTER" stuff
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 
-                'DashboardModule', 'DoctorLoginModule', 'NewDoctorModule', 'PatientLoginModule',
-                'ExistingPatientModule', 'NewPatientModule', 'NewPatientQuestionsModule']) 
+                'DisclaimerModule', 'PatientQuestionsModule'])
 
-.run(function($ionicPlatform){
+.config(function($ionicConfigProvider) {
+        $ionicConfigProvider.tabs.position('bottom');
+})
+
+.run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -17,6 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                         StatusBar.styleDefault();
                 }
         });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -27,70 +31,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-                .state('doctor-login', {
-                        url: '/doctor-login',
-                        templateUrl: 'templates/doctor-login.html',
-                        controller: 'DoctorLoginCtrl'
-                })
-
-        .state('existing-patient', {
-                url: '/existing-patient',
-                templateUrl: 'templates/existing-patient.html',
-                controller: 'ExistingPatientCtrl'
-        })
-
-        .state('new-patient', {
-                url: '/new-patient',
-                templateUrl: 'templates/new-patient.html',
-                controller: 'NewPatientCtrl'
-        })
-
-        .state('new-patient-questions', {
-                url: '/new-patient-questions',
-                templateUrl: 'templates/new-patient-questions.html',
-                controller: 'NewPatientQuestionsCtrl'
-        })
-
         .state('visit-confirmation', {
-                url: '/visit-confirmation',
+                url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression',
                 templateUrl: 'templates/visit-confirmation.html',
                 controller: 'VisitConfirmationCtrl'
         })
-
-        .state('new-doctor', {
-                url: '/new-doctor',
-                templateUrl: 'templates/new-doctor.html',
-                controller: 'NewDoctorCtrl'
-        })
-
-        // setup an abstract state for the tabs directive
+        // abstract state for the tabs directive
         .state('tab', {
                 url: '/tab',
                 abstract: true,
                 templateUrl: 'templates/tabs.html'
         })
 
-        // Each tab has its own nav history stack:
-        .state('tab.overview', {
-                url: '/overview',
+        .state('tab.disclaimer', {
+                url: '/disclaimer',
                 views: {
-                        'tab-overview': {
-                                templateUrl: 'templates/tab-overview.html',
-                                controller: 'DashboardCtrl'
+                        'tab-disclaimer': {
+                                templateUrl: 'templates/tab-disclaimer.html',
+                                controller: 'DisclaimerCtrl'
                         }
                 }
         })
 
-        .state('tab.patient-login', {
-                url: '/patient-login',
+        .state('tab.patient-questions', {
+                url: '/patient-questions',
                 views: {
-                        'tab-patient-login': {
-                                templateUrl: 'templates/tab-patient-login.html',
-                                controller: 'PatientLoginCtrl'
+                        'tab-patient-questions': {
+                                templateUrl: 'templates/tab-patient-questions.html',
+                                controller: 'PatientQuestionsCtrl'
                         }
                 }
         });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/doctor-login');
+        $urlRouterProvider.otherwise('/tab/disclaimer');
+
 });
