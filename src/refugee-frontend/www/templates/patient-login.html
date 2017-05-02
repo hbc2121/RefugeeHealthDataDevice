@@ -1,0 +1,26 @@
+<ion-view>
+    <div class="bar bar-header bar-dark">
+        <h1 class="title">Patient Login</h1>
+    </div>
+
+    <ion-content class="has-header">
+        <form ng-model="patient">
+            <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Patient First Name</span>
+                    <input type="text" placeholder="John" ng-model="patient.firstName">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Patient Last Name</span>
+                    <input type="text" placeholder="Doe" ng-model="patient.lastName">
+                </label>
+            </div>
+            <button ng-click="submit(patient)" class="button button-block button-positive">
+                Submit
+            </button>
+            <button ng-click="newPatient(patient)" class="button button-block button-assertive">
+                New Patient? 
+            </button>
+        </form>
+    </ion-content>
+</ion-view>

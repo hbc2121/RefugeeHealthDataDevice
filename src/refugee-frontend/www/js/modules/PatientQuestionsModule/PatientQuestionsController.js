@@ -1,7 +1,8 @@
 angular.module('PatientQuestionsModule')
-.controller('PatientQuestionsCtrl', function($scope, $state, $timeout, $ionicScrollDelegate,
+.controller('PatientQuestionsCtrl', function($scope, $state, $stateParams, $timeout, $ionicScrollDelegate,
                                         Questions, Forms, ResponseData, HPRTScoring) {
 
+        console.log($stateParams);
         // private properties
 
         // public properties

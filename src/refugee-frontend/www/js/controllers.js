@@ -48,7 +48,7 @@ angular.module('starter.controllers', [])
                         text: '<b>Home</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-                            $state.transitionTo('tab.disclaimer');
+                            $state.transitionTo('disclaimer');
                         }
                     }
                 ]
@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.submit = function() {
-        $state.transitionTo('tab.disclaimer');
+        $state.transitionTo('disclaimer');
     }
 
     $scope.exportPDF = function() {

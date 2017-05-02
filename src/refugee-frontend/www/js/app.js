@@ -1,6 +1,7 @@
 // TODO: REMOVE THIS "STARTER" stuff
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 
-                'DisclaimerModule', 'PatientQuestionsModule'])
+                'DisclaimerModule', 'PatientQuestionsModule', 'PatientLoginModule',
+                'DoctorLoginModule'])
 
 .config(function($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom');
@@ -36,34 +37,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                 templateUrl: 'templates/visit-confirmation.html',
                 controller: 'VisitConfirmationCtrl'
         })
-        // abstract state for the tabs directive
-        .state('tab', {
-                url: '/tab',
-                abstract: true,
-                templateUrl: 'templates/tabs.html'
+
+        .state('doctor-login', {
+                url: '/doctor-login',
+                templateUrl: 'templates/doctor-login.html',
+                controller: 'DoctorLoginCtrl'
         })
 
-        .state('tab.disclaimer', {
+        .state('patient-login', {
+                url: '/patient-login',
+                templateUrl: 'templates/patient-login.html',
+                controller: 'PatientLoginCtrl'
+        })
+
+        .state('disclaimer', {
                 url: '/disclaimer',
-                views: {
-                        'tab-disclaimer': {
-                                templateUrl: 'templates/tab-disclaimer.html',
-                                controller: 'DisclaimerCtrl'
-                        }
-                }
+                templateUrl: 'templates/disclaimer.html',
+                controller: 'DisclaimerCtrl'
         })
 
-        .state('tab.patient-questions', {
-                url: '/patient-questions',
-                views: {
-                        'tab-patient-questions': {
-                                templateUrl: 'templates/tab-patient-questions.html',
-                                controller: 'PatientQuestionsCtrl'
-                        }
-                }
+        .state('patient-questions', {
+                url: '/patient-questions/:firstName/:lastName/:dob',
+                templateUrl: 'templates/patient-questions.html',
+                controller: 'PatientQuestionsCtrl'
         });
 
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/disclaimer');
 
+        // if none of the above states are matched, use this as the fallback
+        $urlRouterProvider.otherwise('/doctor-login');
 });
