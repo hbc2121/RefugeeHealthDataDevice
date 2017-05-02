@@ -1,0 +1,23 @@
+.list .item {
+        white-space: normal;
+}
+
+.item-input-inset {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-right: 0px;
+        float: right;
+}
+
+.select-button {
+        margin: 3px;
+}
+
+.custom-text {
+        max-width: 60%;
+        float: left;
+}
+
+.report-score {
+        float: right;
+}
