@@ -1,73 +1,61 @@
 angular.module('DoctorLoginModule')
-.controller('DoctorLoginCtrl', function($scope, $state, $ionicPopup, Logins) {
+.controller('DoctorLoginCtrl', function($scope, $state, $rootScope, $ionicPopup, AuthService) {
 
-    $scope.newPat = false;
-    $scope.username = "";
-    $scope.password = "";
-    $scope.dob = "";
+        $scope.username = "";
+        $scope.password = "";
 
-    function submit(doctor) {
-        if (doctor && doctor.username && doctor.password) {
-            $scope.username = doctor.username;
-            $scope.password = doctor.password;
-            var params = {
-                'username': $scope.username, 
-                'password': $scope.password, 
-                'dob': $scope.dob
-            };
-            Logins.setDoctor($scope.username);
-            $state.go("disclaimer", params);
-        } else {
-            var myPopup = $ionicPopup.show({
-                title: 'Please provide a valid first name and last name',
-                subTitle: '',
-                scope: $scope,
-                buttons: [
-                    {   
-                        text: 'Cancel'
-                    }
-                ]
-            });
-        }
-    }
-
-    $scope.newDoctor = function(doctor) {
-        $scope.newPat = true;
-        if (doctor && doctor.username && doctor.password ) {
-            var promptPopup = $ionicPopup.prompt({
-                title: 'Doctor Information for:',
-                subTitle: doctor.username,
-                scope: $scope,
-                template: 'Date of Birth',
-                inputType: 'text',
-                inputPlaceholder: 'mm/dd/yyyy',
-                buttons: [
-                    {
-                        text: 'Cancel'
-                    },
-                    {
-                        text: '<b>Save</b>',
-                        type: 'button-positive',
-                        onTap: function(e) {
-                            $scope.dob = this.scope.data.response;
-                            submit(doctor);
-                        }
-                    }
-                ]
-            });
-        } else {
-            var myPopup = $ionicPopup.show({
-                title: 'Please provide a valid first name and last name',
-                subTitle: '',
-                scope: $scope,
-                buttons: [
-                {   
-                    text: 'Cancel'
+        function login(doctor) {
+                if (doctor && doctor.username && doctor.password) {
+                        AuthService.login(doctor).then(function(data) {
+                                $rootScope.user = data;
+                                $state.go("disclaimer");
+                        });
+                } else {
+                        showPopUp("Please fill out all fields");
                 }
-                ]
-            });
         }
-    }
 
-    $scope.submit = submit;
+        function addNewDoctor(doctor) {
+                if (doctor && doctor.username && doctor.password) {
+                        $ionicPopup.prompt({
+                                title: 'Doctor Information for:',
+                                subTitle: doctor.username,
+                                scope: $scope,
+                                template: 'Please re-enter your desired password', 
+                                inputType: 'text',
+                                buttons: [
+                                {
+                                        text: 'Cancel'
+                                },
+                                {
+                                        text: '<b>Save</b>',
+                                        type: 'button-positive',
+                                        onTap: function(e) {
+                                                if ($scope.password == this.scope.data.response) {
+                                                        AuthService.addDoctor(doctor).then(function(data) {
+                                                                login(doctor);
+                                                        });
+                                                } else {
+                                                        showPopUp("Passwords do not match");
+                                                }
+                                        }
+                                }]
+                        });
+                } else {
+                        showPopUp("Please fill out all fields");
+                }
+        }
+
+        function showPopUp(message) {
+                $ionicPopup.show({
+                        title: message,
+                        subTitle: '',
+                        scope: $scope,
+                        buttons: [{ text: 'Close' }]
+                });
+        }
+
+        $scope.login = login;
+        $scope.addNewDoctor = addNewDoctor;
+
 });
