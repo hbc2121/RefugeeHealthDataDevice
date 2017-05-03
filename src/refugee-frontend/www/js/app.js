@@ -51,7 +51,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         })
 
         .state('patient-overview', {
-                url: '/patient-overview',
+                url: '/patient-overview/:name',
                 templateUrl: 'templates/patient-overview.html',
                 controller: 'PatientOverviewCtrl'
         })

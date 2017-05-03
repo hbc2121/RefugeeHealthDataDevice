@@ -69,6 +69,13 @@ angular.module('PatientQuestionsModule')
 
         }
 
+        $scope.showPatientOverview = function() {
+            var name = $scope.firstName + " " + $scope.lastName;
+            $state.go("patient-overview", {
+                "name": name
+            });
+        }
+
         // attach public methods to scope
         $scope.loadForm = loadForm;
         $scope.submitForms = submitForms;

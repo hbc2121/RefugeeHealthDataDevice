@@ -6,7 +6,7 @@
             <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
             </button>
             <h1 class="title">{{ categories[selected] }}</h1>
-            <button class="button button-assertive">View {{ firstName }} {{ lastName }}'s Past Visits</button>
+            <button ng-click="showPatientOverview()" class="button button-assertive">View {{ firstName }} {{ lastName }}'s Past Visits</button>
         </header>
         <ion-content class="has-header">
 

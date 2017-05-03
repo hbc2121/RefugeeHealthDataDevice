@@ -1,7 +1,13 @@
 angular.module('PatientOverviewModule')
-.controller('PatientOverviewCtrl', function($scope, $state) {
+.controller('PatientOverviewCtrl', function($scope, $state, $stateParams) {
 
-    $scope.filter = "Danielle Zelin";
+    console.log($stateParams);
+    $scope.filter = $stateParams.name;
+
+    $scope.myFilter = function(name) {
+        return (name.firstName + " " + name.lastName == $scope.filter) || (!$scope.filter);
+    }
+
     $scope.patients = 
         [
             {

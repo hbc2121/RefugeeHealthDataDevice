@@ -3,10 +3,10 @@
         <h1 class="title">Patient Overview</h1>
     </header>
     <ion-content class="has-header">
-        <div class="list card" ng-repeat="patient in patients">
+        <div class="list card" ng-repeat="patient in patients | filter: myFilter">
             <h2>{{ patient.firstName }} {{ patient.lastName }}</h2>
             <h3>Born: {{ patient.dob }} </h3>
-            <div class="list card" ng-repeat="visit in patient.visits">
+            <div class="list card" ng-repeat="visit in patient.visits | orderBy:'date'">
                 <h4>Date of Visit: {{ visit.date }}</p>
                 <p ng-repeat="(title, scores) in visit.scores">
                     {{ title }}: {{ scores }}
