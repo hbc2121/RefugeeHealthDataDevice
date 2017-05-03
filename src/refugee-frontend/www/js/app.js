@@ -1,7 +1,7 @@
 // TODO: REMOVE THIS "STARTER" stuff
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 
                 'DisclaimerModule', 'PatientQuestionsModule', 'PatientLoginModule',
-                'DoctorLoginModule'])
+                'DoctorLoginModule', 'PatientOverviewModule'])
 
 .config(function($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom');
@@ -48,6 +48,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                 url: '/patient-login',
                 templateUrl: 'templates/patient-login.html',
                 controller: 'PatientLoginCtrl'
+        })
+
+        .state('patient-overview', {
+                url: '/patient-overview',
+                templateUrl: 'templates/patient-overview.html',
+                controller: 'PatientOverviewCtrl'
         })
 
         .state('disclaimer', {

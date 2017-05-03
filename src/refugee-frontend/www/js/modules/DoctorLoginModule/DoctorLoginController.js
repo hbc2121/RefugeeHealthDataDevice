@@ -1,5 +1,5 @@
 angular.module('DoctorLoginModule')
-.controller('DoctorLoginCtrl', function($scope, $state, $ionicPopup) {
+.controller('DoctorLoginCtrl', function($scope, $state, $ionicPopup, Logins) {
 
     $scope.newPat = false;
     $scope.username = "";
@@ -15,6 +15,7 @@ angular.module('DoctorLoginModule')
                 'password': $scope.password, 
                 'dob': $scope.dob
             };
+            Logins.setDoctor($scope.username);
             $state.go("disclaimer", params);
         } else {
             var myPopup = $ionicPopup.show({

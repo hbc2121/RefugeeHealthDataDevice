@@ -1,10 +1,17 @@
 angular.module('PatientLoginModule')
 .controller('PatientLoginCtrl', function($scope, $state, $ionicPopup) {
 
-    $scope.newPat = false;
     $scope.firstName = "";
     $scope.lastName = "";
     $scope.dob = "";
+
+    function init(patient) {
+        $scope.firstName = "";
+        $scope.lastName = "";
+        $scope.dob = "";
+        patient.firstName = "";
+        patient.lastName = "";
+    }
 
     function submit(patient) {
         if (patient && patient.firstName && patient.lastName) {
@@ -13,7 +20,9 @@ angular.module('PatientLoginModule')
             var params = {
                 'firstName': $scope.firstName, 
                 'lastName': $scope.lastName, 
-                'dob': $scope.dob};
+                'dob': $scope.dob
+            };
+            init(patient);
             $state.go("patient-questions", params);
         } else {
             var myPopup = $ionicPopup.show({
@@ -30,7 +39,6 @@ angular.module('PatientLoginModule')
     }
 
     $scope.newPatient = function(patient) {
-        $scope.newPat = true;
         if (patient && patient.firstName && patient.lastName ) {
             var promptPopup = $ionicPopup.prompt({
                 title: 'Patient Information for:',

@@ -4,4 +4,8 @@ angular.module('DisclaimerModule')
     $scope.submit = function() {
         $state.go('patient-login');
     }
+
+    $scope.patientOverview = function() {
+        $state.go('patient-overview');
+    }
 });

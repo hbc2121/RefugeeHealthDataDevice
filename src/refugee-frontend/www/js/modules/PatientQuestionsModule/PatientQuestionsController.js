@@ -2,7 +2,9 @@ angular.module('PatientQuestionsModule')
 .controller('PatientQuestionsCtrl', function($scope, $state, $stateParams, $timeout, $ionicScrollDelegate,
                                         Questions, Forms, ResponseData, HPRTScoring) {
 
-        console.log($stateParams);
+        $scope.firstName = $stateParams.firstName;
+        $scope.lastName = $stateParams.lastName;
+        $scope.dob = $stateParams.dob;
         // private properties
 
         // public properties
