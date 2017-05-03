@@ -8,7 +8,11 @@ angular.module('DoctorLoginModule')
                 if (doctor && doctor.username && doctor.password) {
                         AuthService.login(doctor).then(function(data) {
                                 $rootScope.user = data;
+                                console.log(data);
+                                console.log($rootScope);
                                 $state.go("disclaimer");
+                        }, function(err) {
+                                console.log(err);
                         });
                 } else {
                         showPopUp("Please fill out all fields");
@@ -18,8 +22,7 @@ angular.module('DoctorLoginModule')
         function addNewDoctor(doctor) {
                 if (doctor && doctor.username && doctor.password) {
                         $ionicPopup.prompt({
-                                title: 'Doctor Information for:',
-                                subTitle: doctor.username,
+                                title: 'Doctor Information for ' + doctor.username,
                                 scope: $scope,
                                 template: 'Please re-enter your desired password', 
                                 inputType: 'text',
@@ -28,10 +31,10 @@ angular.module('DoctorLoginModule')
                                         text: 'Cancel'
                                 },
                                 {
-                                        text: '<b>Save</b>',
+                                        text: 'Submit',
                                         type: 'button-positive',
                                         onTap: function(e) {
-                                                if ($scope.password == this.scope.data.response) {
+                                                if (doctor.password == this.scope.data.response) {
                                                         AuthService.addDoctor(doctor).then(function(data) {
                                                                 login(doctor);
                                                         });
