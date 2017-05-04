@@ -1,5 +1,5 @@
 angular.module('PatientLoginModule')
-.controller('PatientLoginCtrl', function($scope, $state, $ionicPopup) {
+.controller('PatientLoginCtrl', function($scope, $state, $rootScope, $ionicPopup, PatientService) {
 
     $scope.firstName = "";
     $scope.lastName = "";
@@ -22,8 +22,26 @@ angular.module('PatientLoginModule')
                 'lastName': $scope.lastName, 
                 'dob': $scope.dob
             };
-            init(patient);
-            $state.go("patient-questions", params);
+            console.log(params);
+            PatientService.getPatient(params).then(function(data) {
+                if (data.data == "error: failed to retrieve patient") {
+                    console.log($rootScope);
+                    var myPopup = $ionicPopup.show({
+                        title: 'Patient not in database.',
+                        subTitle: 'Try adding a new patient.',
+                        scope: $scope,
+                        buttons: [
+                            {   
+                                text: 'Cancel'
+                            }
+                        ]
+                    });
+                } else {
+                    console.log(data.data);
+                    init(patient);
+                    $state.go("patient-questions", params);
+                }
+            });
         } else {
             var myPopup = $ionicPopup.show({
                 title: 'Please provide a valid first name and last name',
@@ -56,6 +74,7 @@ angular.module('PatientLoginModule')
                         type: 'button-positive',
                         onTap: function(e) {
                             $scope.dob = this.scope.data.response;
+                            PatientService.addNewPatient(patient.firstName, patient.lastName, $scope.dob, $rootScope.user);
                             submit(patient);
                         }
                     }

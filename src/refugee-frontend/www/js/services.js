@@ -72,7 +72,7 @@ angular.module('starter.services', [])
         }
 
         function getPatient(patient) {
-                var params = "?firstName=" + patient.first + "&lastName=" + patient.last + "&dob=" + patient.dob
+                var params = "?firstName=" + patient.firstName + "&lastName=" + patient.lastName + "&dob=" + patient.dob
                         var promise = $http({
                                 method: "GET",
                                 url: API_PATH + "/getPatient" + params
@@ -102,7 +102,7 @@ angular.module('starter.services', [])
         }
 
         return {
-                "addPatient": addPatient,
+                "addNewPatient": addNewPatient,
                 "updatePatient": updatePatient,
                 "getPatient": getPatient,
                 "getPatientsOfDoctor": getPatientsOfDoctor,

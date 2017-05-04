@@ -7,10 +7,13 @@ angular.module('DoctorLoginModule')
         function login(doctor) {
                 if (doctor && doctor.username && doctor.password) {
                         AuthService.login(doctor).then(function(data) {
-                                $rootScope.user = data;
-                                console.log(data);
-                                console.log($rootScope);
-                                $state.go("disclaimer");
+                                $rootScope.user = doctor.username;
+                                if (data.data) {
+                                    console.log($rootScope);
+                                    $state.go("disclaimer");
+                                } else {
+                                    showPopUp("No account for user.");
+                                }
                         }, function(err) {
                                 console.log(err);
                         });
