@@ -48,6 +48,20 @@ angular.module('starter.services', [])
                 return promise;
         }
 
+        function addPatientToDoctor(first, last, dob, doctor) {
+                var promise = $http({
+                        method: "POST",
+                        url: API_PATH + "/addPatientToDoctor",
+                        data: {
+                                "firstName": first,
+                                "lastName": last,
+                                "dateOfBirth": dob,
+                                "username": doctor.username
+                        }
+                });
+                return promise;
+        }
+
         function updatePatient(first, last, dob, visitObj, doctor) {
                 var promise = $http({
                         method: "POST",
@@ -57,7 +71,7 @@ angular.module('starter.services', [])
                                 "lastName": last,
                                 "dateOfBirth": dob,
                                 "visit": visitObj,
-                                "username": doctor.username
+                                "username": doctor.username,
                         }
                 });
                 return promise;
@@ -72,7 +86,7 @@ angular.module('starter.services', [])
         }
 
         function getPatient(patient) {
-                var params = "?firstName=" + patient.firstName + "&lastName=" + patient.lastName + "&dob=" + patient.dob
+                var params = "?firstName=" + patient.firstName + "&lastName=" + patient.lastName + "&dob=" + patient.dob + "&username=" + patient.doctor;
                         var promise = $http({
                                 method: "GET",
                                 url: API_PATH + "/getPatient" + params
@@ -103,6 +117,7 @@ angular.module('starter.services', [])
 
         return {
                 "addNewPatient": addNewPatient,
+                "addPatientToDoctor": addPatientToDoctor,
                 "updatePatient": updatePatient,
                 "getPatient": getPatient,
                 "getPatientsOfDoctor": getPatientsOfDoctor,

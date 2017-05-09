@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         $stateProvider
 
         .state('visit-confirmation', {
-                url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression',
+                url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression/:firstName/:lastName/:dob',
                 templateUrl: 'templates/visit-confirmation.html',
                 controller: 'VisitConfirmationCtrl'
         })
