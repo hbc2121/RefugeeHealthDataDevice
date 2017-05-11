@@ -1,6 +1,18 @@
 angular.module('PatientLoginModule')
 .controller('PatientLoginCtrl', function($scope, $state, $rootScope, $ionicPopup, PatientService) {
 
+    function formatDate(patient) {
+        date = JSON.stringify(patient.dateOfBirth).split(/\D/g);
+        month = date[2];
+        day = date[3];
+        year = date[1];
+        $scope.dateOfBirth = (month + '-' + day + '-' + year).replace(/"/g, "'");
+    }
+
+    $scope.firstName = "";
+    $scope.lastName = "";
+    $scope.dateOfBirth = "";
+
     $scope.logout = function() {
         var myPopup = $ionicPopup.show({
             title: 'You will lose all the data from this session.',
@@ -22,17 +34,13 @@ angular.module('PatientLoginModule')
         });
     }
 
-    $scope.firstName = "";
-    $scope.lastName = "";
-    $scope.dob = "";
-
     function init(patient) {
         $scope.firstName = "";
         $scope.lastName = "";
-        $scope.dob = "";
+        $scope.dateOfBirth = "";
         patient.firstName = "";
         patient.lastName = "";
-        patient.dob = "";
+        patient.dateOfBirth = "";
     }
 
 
@@ -54,11 +62,10 @@ angular.module('PatientLoginModule')
                     onTap: function(e) {
                         if ($rootScope.user == this.scope.data.response) {
                             if (action == "add new patient") {
-                                PatientService.addNewPatient(patient.firstName, patient.lastName, $scope.dob, $rootScope.user);
+                                PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user);
                                 submit(patient, true);
                             } else if (action == "add new patient to doctor") {
-                                PatientService.addPatientToDoctor(patient.firstName, patient.lastName, $scope.dob, $rootScope.user).then(function(data) {
-                                    console.log(data);
+                                PatientService.addPatientToDoctor($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user).then(function(data) {
                                     if (data.status == "200") {
                                         submit(patient, true);
                                     }
@@ -74,20 +81,19 @@ angular.module('PatientLoginModule')
     }
 
     function submit(patient, newPat) {
-        if (patient && patient.firstName && patient.lastName && patient.dob) {
+        if (patient && patient.firstName && patient.lastName && patient.dateOfBirth) {
             $scope.firstName = patient.firstName;
             $scope.lastName = patient.lastName;
-            $scope.dob = patient.dob;
+            formatDate(patient);
 
             var params = {
                 'firstName': $scope.firstName, 
                 'lastName': $scope.lastName, 
-                'dob': $scope.dob,
+                'dateOfBirth': $scope.dateOfBirth,
                 'doctor': $rootScope.user
             };
 
             PatientService.getPatient(params).then(function(data) {
-                console.log(data.data);
                 if ((data.data == "error: no patient found") && (!newPat)) {
                     var myPopup = $ionicPopup.show({
                         title: 'Patient not in database.',
@@ -121,7 +127,11 @@ angular.module('PatientLoginModule')
     }
 
     $scope.newPatient = function(patient) {
-        if (patient && patient.firstName && patient.lastName ) {
+        if (patient && patient.firstName && patient.lastName && patient.dateOfBirth) {
+            $scope.firstName = patient.firstName;
+            $scope.lastName = patient.lastName;
+            formatDate(patient);
+
             var promptPopup = $ionicPopup.prompt({
                 title: 'Patient Information for:',
                 subTitle: patient.firstName + ' ' + patient.lastName,
@@ -138,7 +148,7 @@ angular.module('PatientLoginModule')
                         type: 'button-positive',
                         onTap: function(e) {
                             if ($rootScope.user == this.scope.data.response) {
-                                PatientService.addNewPatient(patient.firstName, patient.lastName, $scope.dob, $rootScope.user);
+                                PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user);
                                 submit(patient, true);
                             } else {
                                 newPopup(patient, "Incorrect Doctor Username", "add new patient");

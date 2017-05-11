@@ -23,11 +23,6 @@ angular.module('PatientQuestionsModule')
         });
     }
 
-    $scope.firstName = $stateParams.firstName;
-    $scope.lastName = $stateParams.lastName;
-    $scope.dob = $stateParams.dob;
-    // private properties
-
     // public properties
     $scope.selected;
     $scope.forms;
@@ -82,10 +77,9 @@ angular.module('PatientQuestionsModule')
         // set response data object
         ResponseData.set_response_data($scope.forms);
 
-        console.log($scope.firstName);
-        scores.firstName = $scope.firstName;
-        scores.lastName = $scope.lastName;
-        scores.dob = $scope.dob;
+        scores.firstName = $stateParams.firstName;
+        scores.lastName = $stateParams.lastName;
+        scores.dateOfBirth = $stateParams.dateOfBirth;
 
         // navigate to report page
         $state.go("visit-confirmation", scores).then(function() {
@@ -96,11 +90,12 @@ angular.module('PatientQuestionsModule')
     }
 
     $scope.showPatientOverview = function() {
-        var name = $scope.firstName + " " + $scope.lastName + " " + $scope.dob;
-        $state.go("patient-overview", {
-            "firstName": $scope.firstName,
-            "lastName": $scope.lastName,
-            "dob": $scope.dob
+        console.log($scope.dateOfBirth);
+        $state.go("patient-overview",
+        {
+            "firstName": $stateParams.firstName,
+            "lastName": $stateParams.lastName,
+            "dateOfBirth": $stateParams.dateOfBirth
         });
     }
 

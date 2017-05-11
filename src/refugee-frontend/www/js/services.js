@@ -56,7 +56,7 @@ angular.module('starter.services', [])
                                 "firstName": first,
                                 "lastName": last,
                                 "dateOfBirth": dob,
-                                "username": doctor.username
+                                "username": doctor
                         }
                 });
                 return promise;
@@ -71,7 +71,7 @@ angular.module('starter.services', [])
                                 "lastName": last,
                                 "dateOfBirth": dob,
                                 "visit": visitObj,
-                                "username": doctor.username,
+                                "username": doctor.username
                         }
                 });
                 return promise;
@@ -80,25 +80,17 @@ angular.module('starter.services', [])
         function getPatientsOfDoctor(doctor) {
                 var promise = $http({
                         method: "GET",
-                        url: API_PATH + "/getPatientsOfDoctor?username=" + doctor.username
+                        url: API_PATH + "/getPatientsOfDoctor?username=" + doctor
                 });
                 return promise;
         }
 
         function getPatient(patient) {
-                var params = "?firstName=" + patient.firstName + "&lastName=" + patient.lastName + "&dob=" + patient.dob + "&username=" + patient.doctor;
+                var params = "?firstName=" + patient.firstName + "&lastName=" + patient.lastName + "&dateOfBirth=" + patient.dateOfBirth + "&username=" + patient.doctor;
                         var promise = $http({
                                 method: "GET",
                                 url: API_PATH + "/getPatient" + params
                         });
-                return promise;
-        }
-
-        function getAllPatients() {
-                var promise = $http({
-                        method: "GET",
-                        url: API_PATH + "/getAllPatients"
-                });
                 return promise;
         }
 
@@ -121,7 +113,6 @@ angular.module('starter.services', [])
                 "updatePatient": updatePatient,
                 "getPatient": getPatient,
                 "getPatientsOfDoctor": getPatientsOfDoctor,
-                "getAllPatients": getAllPatients,
                 "deletePatient": deletePatient
         };
 

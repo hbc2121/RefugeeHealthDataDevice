@@ -1,7 +1,7 @@
 <ion-view>
     <div class="bar bar-header bar-dark">
         <h1 class="title">Patient Login</h1>
-        <button ng-click="logout()" class="button button-icon button-clear" menu-toggle="right">Logout</button>
+        <button ng-click="logout()" class="button button-icon button-clear">Logout</button>
     </div>
 
     <ion-content class="has-header">
@@ -17,7 +17,7 @@
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Date of Birth</span>
-                    <input type="text" placeholder="mm/dd/yyyy" ng-model="patient.dob">
+                    <input type="date" ng-model="patient.dateOfBirth">
                 </label>
             </div>
             <button ng-click="submit(patient, false)" class="button button-block button-positive">

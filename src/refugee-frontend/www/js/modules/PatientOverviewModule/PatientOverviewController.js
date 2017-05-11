@@ -1,5 +1,5 @@
 angular.module('PatientOverviewModule')
-.controller('PatientOverviewCtrl', function($scope, $state, $stateParams, $ionicPopup, $rootScope, PatientService) {
+.controller('PatientOverviewCtrl', function($scope, $rootScope, $state, $stateParams, $ionicPopup, $rootScope, PatientService) {
 
     $scope.logout = function() {
         var myPopup = $ionicPopup.show({
@@ -22,88 +22,28 @@ angular.module('PatientOverviewModule')
         });
     }
 
-    $scope.patients = 
-        [
-            {
-                'firstName': 'hi',
-                'lastName': 'hi',
-                'dob': 'hi',
-                'visits':
-                    [
-                        {
-                            'date': '1/1/2017',
-                            'scores': 
-                                {
-                                    'Trauma Symptoms Total Score': 0.00,
-                                    'Trauma Symptoms DSM-IV Score': 0.00,
-                                    'Hopkins Symptom Total Score': 0.00,
-                                    'Hopkins Symptom Anxiety Score': 0.00,
-                                    'Hopkins Symptom Depression Score': 0.00
-                                }
-                        },
-                        {
-                            'date': '1/2/2017',
-                            'scores':
-                                {
-                                    'Trauma Symptoms Total Score': 0.00,
-                                    'Trauma Symptoms DSM-IV Score': 0.00,
-                                    'Hopkins Symptom Total Score': 0.00,
-                                    'Hopkins Symptom Anxiety Score': 0.00,
-                                    'Hopkins Symptom Depression Score': 0.00
-                                }
-                        }
-                    ]
-            },
-            {
-                'firstName': 'Hayley',
-                'lastName': 'Cohen',
-                'dob': '9/5/1995',
-                'visits':
-                    [
-                        {
-                            'date': '1/1/2017',
-                            'scores':
-                                {
-                                    'Trauma Symptoms Total Score': 0.00,
-                                    'Trauma Symptoms DSM-IV Score': 0.00,
-                                    'Hopkins Symptom Total Score': 0.00,
-                                    'Hopkins Symptom Anxiety Score': 0.00,
-                                    'Hopkins Symptom Depression Score': 0.00
-                                }
-                        },
-                        {
-                            'date': '1/1/2017',
-                            'scores':
-                                {
-                                    'Trauma Symptoms Total Score': 0.00,
-                                    'Trauma Symptoms DSM-IV Score': 0.00,
-                                    'Hopkins Symptom Total Score': 0.00,
-                                    'Hopkins Symptom Anxiety Score': 0.00,
-                                    'Hopkins Symptom Depression Score': 0.00
-                                }
-                        },
-                        {
-                            'date': '1/2/2017',
-                            'scores':
-                                {
-                                    'Trauma Symptoms Total Score': 0.00,
-                                    'Trauma Symptoms DSM-IV Score': 0.00,
-                                    'Hopkins Symptom Total Score': 0.00,
-                                    'Hopkins Symptom Anxiety Score': 0.00,
-                                    'Hopkins Symptom Depression Score': 0.00
-                                }
-                        }
 
-                    ]
-            }
-        ]
+    PatientService.getPatientsOfDoctor($rootScope.user).then(function(data) {
+        if (data.data.length == 0) {
+            $scope.patients = [{
+                'firstName': 'This doctor has no patients',
+                'lastName': '',
+                'dateOfBirth': '',
+                'visits': []
+            }]
+        } else {
+            $scope.patients = data.data;
+        }
+    });
 
     $scope.filter = "";
-
-    $scope.myFilter = function(name) {
-        return (name.firstName + " " + name.lastName == $scope.filter) || (!$scope.filter);
+    if ($stateParams.firstName != "" && $stateParams.lastName != "") {
+        $scope.filter = $stateParams.firstName + " " + $stateParams.lastName;
     }
 
-
+    $scope.myFilter = function(name) {
+        console.log($scope.filter);
+        return (name.firstName + " " + name.lastName == $scope.filter) || (!$scope.filter);
+    }
 
 });

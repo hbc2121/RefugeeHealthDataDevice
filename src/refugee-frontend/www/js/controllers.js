@@ -25,6 +25,7 @@ angular.module('starter.controllers', [])
 
     $scope.emailPrompt = false;
 
+
     finalData = {
                     "category": "Overview",
                     "questions":[
@@ -52,13 +53,43 @@ angular.module('starter.controllers', [])
                     "additional_comments": "Hopkins and Trauma Scores"
                 };
 
-    function updatePatientAndExit() {
+    function updatePatient() {
         ResponseData.get_response_data().unshift(finalData);
         pdfData = ResponseData.get_response_data();
-        PatientService.updatePatient($stateParams.firstName, $stateParams.lastName, $stateParams.dob, pdfData, $rootScope.user).then(function(data) {
+        PatientService.updatePatient($stateParams.firstName, $stateParams.lastName, $stateParams.dateOfBirth, pdfData, $rootScope.user).then(function(data) {
             console.log(data);
+            if (data.data == "OK") {
+                var myPopup = $ionicPopup.show({
+                    title: 'This visit has been saved',
+                    subTitle: 'Would you like to leave this page?',
+                    scope: $scope,
+                    buttons: [
+                        { 
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                submit(true);
+                            }
+                        }, 
+                        {
+                            text: '<b>No</b>',
+                            type: 'button-assertive',
+                        }
+                    ]
+                });
+            } else {
+                var myPopup = $ionicPopup.show({
+                    title: 'Error',
+                    subTitle: 'This visit could not be saved. Please try again',
+                    scope: $scope,
+                    buttons: [
+                        { 
+                            text: 'Ok'
+                        }
+                    ]
+                });
+            }
         });
-        submit();
     }
 
     $scope.sendEmail = function(email) {
@@ -67,20 +98,13 @@ angular.module('starter.controllers', [])
             pdfData = ResponseData.get_response_data();
             ResponseData.generatePDF(pdfData, email.address);
             var myPopup = $ionicPopup.show({
-                title: 'Email confirmation for ' + email.address,
-                subTitle: 'Please select Cancel to stay on this page or Home to go back to the home screen',
+                title: 'Email Confirmation',
+                subTitle: 'An email has been sent to ' + email.address,
                 scope: $scope,
                 buttons: [
                     { 
-                        text: 'Cancel' 
-                    }, 
-                    {
-                        text: '<b>Home</b>',
-                        type: 'button-positive',
-                        onTap: function(e) {
-                            updatePatientAndExit();
-                        }
-                    }
+                        text: 'Ok'
+                    } 
                 ]
             });
         } else {
@@ -99,8 +123,42 @@ angular.module('starter.controllers', [])
 
     }
 
-    function submit() {
-        $state.transitionTo('disclaimer');
+    $scope.showPatientOverview = function() {
+        $state.go("patient-overview", {
+            "firstName": $stateParams.firstName,
+            "lastName": $stateParams.lastName,
+            "dateOfBirth": $stateParams.dateOfBirth
+        });
+    }
+
+    function submit(saved) {
+        if (saved) {
+            $state.transitionTo('disclaimer');
+        } else {
+            var myPopup = $ionicPopup.show({
+                title: 'This visit is currently not saved',
+                subTitle: 'Would you like to save?',
+                scope: $scope,
+                buttons: [
+                    { 
+                        text: '<b>Yes</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            updatePatient();
+                        }
+                    },
+                    {
+                        text: '<b>No</b>',
+                        type: 'button-assertive',
+                        onTap: function(e) {
+                            $state.transitionTo('disclaimer');
+                        }
+                    }
+                ]
+            });
+
+        }
+
     }
 
     $scope.exportPDF = function() {
@@ -116,6 +174,6 @@ angular.module('starter.controllers', [])
 
     $scope.scores = $stateParams;
     $scope.submit = submit;
-    $scope.updatePatientAndExit = updatePatientAndExit;
+    $scope.updatePatient = updatePatient;
 
 });

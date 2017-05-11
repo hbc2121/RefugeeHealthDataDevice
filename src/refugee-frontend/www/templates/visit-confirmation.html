@@ -1,7 +1,7 @@
-<uion-view>
+<ion-view >
     <div class="bar bar-header bar-dark">
         <h1 class="title">Patient Summary</h1>
-        <button ng-click="logout()" class="button button-icon button-clear" menu-toggle="right">Logout</button>
+        <button ng-click="logout()" class="button button-icon button-clear">Logout</button>
     </div>
     <ion-content class="padding has-header">
         <div class="card">
@@ -87,11 +87,15 @@
                 </button>
             </form>
         </ion-item>
-        <button class="button button-block button-assertive" ng-click="updatePatientAndExit()">
-            Save Session and Exit
+        <button ng-click="showPatientOverview()" class="button button-full button-balanced">
+            View Patients's Past Visits
+        </button>
+        <button class="button button-block button-assertive" ng-click="updatePatient()">
+            Save Session 
         </button>
         <button class="button button-block button-assertive" ng-click="submit()">
             Exit
         </button>
     </ion-content>
-    </ion-view>
+    </ionc-side-menu-content>
+</ion-view>
