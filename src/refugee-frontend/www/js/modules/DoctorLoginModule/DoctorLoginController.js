@@ -4,6 +4,15 @@ angular.module('DoctorLoginModule')
         $scope.username = "";
         $scope.password = "";
 
+        function showPopUp(message) {
+                $ionicPopup.show({
+                        title: message,
+                        subTitle: '',
+                        scope: $scope,
+                        buttons: [{ text: 'Close' }]
+                });
+        }
+
         function login(doctor) {
                 if (doctor && doctor.username && doctor.password) {
                         AuthService.login(doctor).then(function(data) {
@@ -40,7 +49,12 @@ angular.module('DoctorLoginModule')
                                         onTap: function(e) {
                                                 if (doctor.password == this.scope.data.response) {
                                                         AuthService.addDoctor(doctor).then(function(data) {
-                                                                login(doctor);
+                                                                console.log(data);
+                                                                if (data.data == "error: doctor already exists!") {
+                                                                    showPopUp("Doctor Already Exists");
+                                                                } else {
+                                                                    login(doctor);
+                                                                }
                                                         });
                                                 } else {
                                                         showPopUp("Passwords do not match");
@@ -53,14 +67,6 @@ angular.module('DoctorLoginModule')
                 }
         }
 
-        function showPopUp(message) {
-                $ionicPopup.show({
-                        title: message,
-                        subTitle: '',
-                        scope: $scope,
-                        buttons: [{ text: 'Close' }]
-                });
-        }
 
         $scope.login = login;
         $scope.addNewDoctor = addNewDoctor;

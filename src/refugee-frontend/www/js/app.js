@@ -27,6 +27,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
 // configure logout functionality
 .run(function($rootScope, $state, $q, $ionicPopup) {
 
+        function back() {
+            window.history.back();
+        }
+
         function logout() {
                 return $q(function(resolve, reject) {
                         showPopUp().then(function(didLogOut) {
@@ -63,6 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         };
 
         $rootScope.logout = logout;
+        $rootScope.back = back;
 
 })
 

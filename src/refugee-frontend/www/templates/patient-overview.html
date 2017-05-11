@@ -1,5 +1,6 @@
 <ion-view>
         <header class="bar bar-header bar-dark">
+                <button ng-click="back()" class="button button-icon button-clear">Back</button>
                 <h1 class="title">Patient Overview</h1>
                 <button ng-click="logout()" class="button button-icon button-clear">Logout</button>
         </header>
@@ -22,10 +23,9 @@
                                 <h3>Born: {{ patient.dateOfBirth }} </h3>
                         </div>
                         <div class="list card has-header" ng-repeat="visit in patient.visits | orderBy:'date'" ng-if="patient.visits.length > 0">
-                                <h4>Date of Visit: {{ visit.date }}</p>
-                                        <p ng-repeat="score in visit[0].questions">
-                                        {{ score.body}}: {{ score.value }}
-                                        </p>
+                                <p ng-repeat="score in visit[0].questions">
+                                {{ score.body}}: {{ score.value }}
+                                </p>
                         </div>
                         <div class="list card has-header" ng-if="patient.visits.length == 0">
                                 <h4>There are no visits saved for this patient</h4> 

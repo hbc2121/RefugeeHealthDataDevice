@@ -50,6 +50,7 @@ angular.module('starter.services', [])
         }
 
         function logOutPatient() {
+            console.log("logging out patient");
             patient = {
                 "firstName": "",
                 "lastName": "",

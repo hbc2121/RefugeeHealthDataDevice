@@ -5,6 +5,15 @@ angular.module('PatientLoginModule')
     $scope.dateOfBirth;
     $scope.patient;
 
+    function showPopUp(message) {
+            $ionicPopup.show({
+                    title: message,
+                    subTitle: '',
+                    scope: $scope,
+                    buttons: [{ text: 'Close' }]
+            });
+    }
+
     function formatDate(patient) {
         date = JSON.stringify(patient.dateOfBirth).split(/\D/g);
         month = date[2];
@@ -49,7 +58,13 @@ angular.module('PatientLoginModule')
                 onTap: function(e) {
                     if ($rootScope.user == this.scope.data.response) {
                         if (action == "add new patient") {
-                            PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user);
+                            PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user).then(function(data) {
+                                if (data.data == "error: patient already exists") {
+                                    showPopUp("Patient Already Exists");
+                                } else {
+                                    submit(patient, true);
+                                } 
+                            });
                             submit(patient, true);
                         } else if (action == "add new patient to doctor") {
                             PatientService.addPatientToDoctor($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user).then(function(data) {
@@ -137,8 +152,13 @@ angular.module('PatientLoginModule')
                     type: 'button-positive',
                     onTap: function(e) {
                         if ($rootScope.user == this.scope.data.response) {
-                            PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user);
-                            submit(patient, true);
+                            PatientService.addNewPatient($scope.firstName, $scope.lastName, $scope.dateOfBirth, $rootScope.user).then(function(data) {
+                                if (data.data == "error: patient already exists") {
+                                    showPopUp("Patient Already Exists");
+                                } else {
+                                    submit(patient, true);
+                                } 
+                            });
                         } else {
                             newPopup(patient, "Incorrect Doctor Username", "add new patient");
                         }

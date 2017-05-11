@@ -2,7 +2,7 @@ angular.module('PatientOverviewModule')
 .controller('PatientOverviewCtrl', function($scope, $rootScope, $state, $ionicPopup, PatientService) {
 
         function init() {
-                $scope.filter = "";
+                $scope.filter = null;
                 $scope.patients = [];
         }
 
@@ -24,14 +24,15 @@ angular.module('PatientOverviewModule')
                 return $scope.patients.length > 0;
         }
 
-        var p = PatientService.loggedInPatient();
-
-        if (p.firstName != "" && p.lastName != "") {
-                $scope.filter = p.firstName + " " + p.lastName;
-        }
 
         $scope.myFilter = function(name) {
-                return (name.firstName + " " + name.lastName == $scope.filter) || (!$scope.filter);
+            var p = PatientService.loggedInPatient();
+            if (p.firstName != "" && p.lastName != "") {
+                    $scope.filter = p.firstName + " " + p.lastName;
+            } else {
+                $scope.filter = null;
+            }
+            return (name.firstName + " " + name.lastName == $scope.filter) || (!$scope.filter);
         }
 
         init();

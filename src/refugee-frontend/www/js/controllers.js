@@ -36,10 +36,8 @@ angular.module('starter.controllers', [])
 
         function updatePatient() {
 
-                console.log("CONFIRMATION", $rootScope.user);
                 ResponseData.get_response_data().unshift(finalData);
                 pdfData = ResponseData.get_response_data();
-                //console.log("$stateParams visit", $stateParams);
 
                 var p = PatientService.loggedInPatient();
 
@@ -120,6 +118,7 @@ angular.module('starter.controllers', [])
 
         function submit(saved) {
                 if (saved) {
+                        PatientService.logOutPatient();
                         $state.transitionTo('disclaimer');
                 } else {
                         var myPopup = $ionicPopup.show({
@@ -138,6 +137,7 @@ angular.module('starter.controllers', [])
                                         text: '<b>No</b>',
                                         type: 'button-assertive',
                                         onTap: function(e) {
+                                                PatientService.logOutPatient();
                                                 $state.transitionTo('disclaimer');
                                         }
                                 }
