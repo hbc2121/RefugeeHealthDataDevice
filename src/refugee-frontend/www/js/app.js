@@ -24,6 +24,48 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
 
 })
 
+// configure logout functionality
+.run(function($rootScope, $state, $q, $ionicPopup) {
+
+        function logout() {
+                return $q(function(resolve, reject) {
+                        showPopUp().then(function(didLogOut) {
+                                if (didLogOut == true) {
+                                        $rootScope.user = "";
+                                        resolve($state.go("doctor-login"));
+                                } else {
+                                        reject();
+                                }
+                        });
+                });
+        }
+
+        function showPopUp() {
+                return $ionicPopup.show({
+                        title: 'You will lose all the data from this session.',
+                        subTitle: 'Do you wish to continue?',
+                        buttons: [
+                        {   
+                                text: 'Cancel',
+                                onTap: function(e) {
+                                        return false;
+                                }
+                        },
+                        {
+                                text: '<b>Continue</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                        return true;
+                                }
+                        }
+                        ]
+                });
+        };
+
+        $rootScope.logout = logout;
+
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
 
         // Ionic uses AngularUI Router which uses the concept of states
@@ -32,11 +74,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-        .state('visit-confirmation', {
-                url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression/:firstName/:lastName/:dateOfBirth',
-                templateUrl: 'templates/visit-confirmation.html',
-                controller: 'VisitConfirmationCtrl'
-        })
+                .state('visit-confirmation', {
+                        url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression/:firstName/:lastName/:dateOfBirth',
+                        templateUrl: 'templates/visit-confirmation.html',
+                        controller: 'VisitConfirmationCtrl'
+                })
 
         .state('doctor-login', {
                 url: '/doctor-login',
@@ -51,7 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         })
 
         .state('patient-overview', {
-            url: '/patient-overview/:firstName/:lastName/:dateOfBirth',
+                url: '/patient-overview/:firstName/:lastName/:dateOfBirth',
                 templateUrl: 'templates/patient-overview.html',
                 controller: 'PatientOverviewCtrl'
         })
