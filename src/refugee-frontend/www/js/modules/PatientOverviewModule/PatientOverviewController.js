@@ -1,5 +1,5 @@
 angular.module('PatientOverviewModule')
-.controller('PatientOverviewCtrl', function($scope, $rootScope, $state, $stateParams, $ionicPopup,PatientService) {
+.controller('PatientOverviewCtrl', function($scope, $rootScope, $state, $ionicPopup, PatientService) {
 
         function init() {
                 $scope.filter = "";
@@ -14,6 +14,9 @@ angular.module('PatientOverviewModule')
         }
 
         PatientService.getPatientsOfDoctor($rootScope.user).then(function(data) {
+                console.log("OVERVIEW", $rootScope.user);
+                console.log("data", data);
+                console.log("data.data", data.data);
                 $scope.patients = data.data;
         });
 
@@ -21,8 +24,10 @@ angular.module('PatientOverviewModule')
                 return $scope.patients.length > 0;
         }
 
-        if ($stateParams.firstName != "" && $stateParams.lastName != "") {
-                $scope.filter = $stateParams.firstName + " " + $stateParams.lastName;
+        var p = PatientService.loggedInPatient();
+
+        if (p.firstName != "" && p.lastName != "") {
+                $scope.filter = p.firstName + " " + p.lastName;
         }
 
         $scope.myFilter = function(name) {

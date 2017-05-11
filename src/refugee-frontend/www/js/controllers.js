@@ -35,9 +35,15 @@ angular.module('starter.controllers', [])
         };
 
         function updatePatient() {
+
+                console.log("CONFIRMATION", $rootScope.user);
                 ResponseData.get_response_data().unshift(finalData);
                 pdfData = ResponseData.get_response_data();
-                PatientService.updatePatient($stateParams.firstName, $stateParams.lastName, $stateParams.dateOfBirth, pdfData, $rootScope.user).then(function(data) {
+                //console.log("$stateParams visit", $stateParams);
+
+                var p = PatientService.loggedInPatient();
+
+                PatientService.updatePatient(p.firstName, p.lastName, p.dateOfBirth, pdfData, $rootScope.user).then(function(data) {
                         console.log(data);
                         if (data.data == "OK") {
                                 var myPopup = $ionicPopup.show({

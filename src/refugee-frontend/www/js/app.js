@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         $stateProvider
 
                 .state('visit-confirmation', {
-                        url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression/:firstName/:lastName/:dateOfBirth',
+                        url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression',
                         templateUrl: 'templates/visit-confirmation.html',
                         controller: 'VisitConfirmationCtrl'
                 })
@@ -93,7 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         })
 
         .state('patient-overview', {
-                url: '/patient-overview/:firstName/:lastName/:dateOfBirth',
+                url: '/patient-overview',
                 templateUrl: 'templates/patient-overview.html',
                 controller: 'PatientOverviewCtrl'
         })
@@ -105,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         })
 
         .state('patient-questions', {
-                url: '/patient-questions/:firstName/:lastName/:dateOfBirth',
+                url: '/patient-questions',
                 templateUrl: 'templates/patient-questions.html',
                 controller: 'PatientQuestionsCtrl'
         });

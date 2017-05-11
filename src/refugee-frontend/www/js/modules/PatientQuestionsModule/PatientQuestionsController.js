@@ -1,6 +1,5 @@
 angular.module('PatientQuestionsModule')
-.controller('PatientQuestionsCtrl', function($scope, $state, $stateParams, $timeout, $rootScope, $ionicScrollDelegate, $ionicPopup,
-                        Questions, Forms, ResponseData, HPRTScoring) {
+.controller('PatientQuestionsCtrl', function($scope, $state, $timeout, $rootScope, $ionicScrollDelegate, $ionicPopup, PatientService, Questions, Forms, ResponseData, HPRTScoring) {
 
         // public properties
         $scope.selected;
@@ -50,39 +49,34 @@ angular.module('PatientQuestionsModule')
 
         function submitForms() {
 
+                console.log("QUESTIONS", $rootScope.user);
+
                 // compute scores
                 var scores = HPRTScoring.getAllScores($scope.forms);
 
                 // set response data object
                 ResponseData.set_response_data($scope.forms);
 
-                scores.firstName = $stateParams.firstName;
-                scores.lastName = $stateParams.lastName;
-                scores.dateOfBirth = $stateParams.dateOfBirth;
+                console.log($rootScope);
+                //console.log("$stateParams questions", $stateParams);
 
                 // navigate to report page
                 $state.go("visit-confirmation", scores).then(function() {
-                        // reinitialize once this is done
-                        init();
+                    // reinitialize once this is done
+                    init();
                 });
 
         }
 
         $scope.showPatientOverview = function() {
-                console.log($scope.dateOfBirth);
-                $state.go("patient-overview",
-                                {
-                                        "firstName": $stateParams.firstName,
-                                        "lastName": $stateParams.lastName,
-                                        "dateOfBirth": $stateParams.dateOfBirth
-                                });
+            $state.go("patient-overview");
         }
 
         $scope.logout = function() {
-                $rootScope.logout().then(function() {
-                        init();
-                }, function() {
-                });
+            $rootScope.logout().then(function() {
+                init();
+            }, function() {
+            });
         }
 
         // attach public methods to scope

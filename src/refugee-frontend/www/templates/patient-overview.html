@@ -4,12 +4,17 @@
                 <button ng-click="logout()" class="button button-icon button-clear">Logout</button>
         </header>
         <ion-content class="has-header">
-                <div ng-if"!hasPatients()">
+                <div ng-if="patients.length == 0">
                         <div class="list card has-header">
                                 <h4>No saved patients for this doctor.</h4> 
                         </div>
                 </div>
-                <div class="list card" ng-if="hasPatients()" ng-repeat="patient in patients | filter: myFilter">
+                <div ng-if="patients.length > 0">
+                        <div class="list card has-header">
+                            <h4>Patients for {{ doctor }}</h4>
+                        </div>
+                </div>
+                <div class="list card" ng-repeat="patient in patients | filter: myFilter">
                         <header class="bar bar-header bar-stable">
                                 <h2>{{ patient.firstName }} {{ patient.lastName }}</h2>
                         </header>
@@ -18,8 +23,8 @@
                         </div>
                         <div class="list card has-header" ng-repeat="visit in patient.visits | orderBy:'date'" ng-if="patient.visits.length > 0">
                                 <h4>Date of Visit: {{ visit.date }}</p>
-                                        <p ng-repeat="(title, scores) in visit.scores">
-                                        {{ title }}: {{ scores }}
+                                        <p ng-repeat="score in visit[0].questions">
+                                        {{ score.body}}: {{ score.value }}
                                         </p>
                         </div>
                         <div class="list card has-header" ng-if="patient.visits.length == 0">
