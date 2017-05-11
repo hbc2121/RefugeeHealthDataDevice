@@ -9,9 +9,9 @@ angular.module('PatientLoginModule')
         $scope.dateOfBirth = (month + '-' + day + '-' + year).replace(/"/g, "'");
     }
 
-    $scope.firstName = "";
-    $scope.lastName = "";
-    $scope.dateOfBirth = "";
+    $scope.firstName;
+    $scope.lastName;
+    $scope.dateOfBirth;
 
     $scope.logout = function() {
             $rootScope.logout().then(function() {
@@ -80,6 +80,7 @@ angular.module('PatientLoginModule')
                     };
 
                     PatientService.getPatient(params).then(function(data) {
+                            console.log(data);
                             if ((data.data == "error: no patient found") && (!newPat)) {
                                     var myPopup = $ionicPopup.show({
                                             title: 'Patient not in database.',
@@ -95,6 +96,7 @@ angular.module('PatientLoginModule')
                                     newPopup(patient, "Not Your Patient", "add new patient to doctor");
                             } else if (data.data != "error: failed to retrieve patient") {
                                     init(patient);
+                                    console.log(params);
                                     $state.go("patient-questions", params);
                             }
                     });
