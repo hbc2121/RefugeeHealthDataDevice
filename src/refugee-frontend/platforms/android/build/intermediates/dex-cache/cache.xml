@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/ethan/Documents/Tufts/comp9798/RefugeeHealthDataDevice/src/refugee-frontend/platforms/android/build/intermediates/exploded-aar/org.apache.cordova/CordovaLib/6.2.2/release/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c961b0e0471c046420d2608b333f5bfcc403bc47">
+        <dex dex="/home/ethan/Documents/Tufts/comp9798/RefugeeHealthDataDevice/src/refugee-frontend/platforms/android/build/intermediates/pre-dexed/release/CordovaLib-6.2.2-release_81e0e368cf86130e724b9dddef452f87f19bb576.jar" />
+    </item>
+
+</items>
