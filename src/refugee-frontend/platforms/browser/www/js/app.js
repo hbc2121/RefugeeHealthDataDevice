@@ -1,12 +1,13 @@
 // TODO: REMOVE THIS "STARTER" stuff
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 
-                'DisclaimerModule', 'PatientQuestionsModule'])
+                'DisclaimerModule', 'PatientQuestionsModule', 'PatientLoginModule',
+                'DoctorLoginModule', 'PatientOverviewModule'])
 
 .config(function($ionicConfigProvider) {
-    $ionicConfigProvider.tabs.position('bottom');
+        $ionicConfigProvider.tabs.position('bottom');
 })
 
-.run(function($ionicPlatform){
+.run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -20,6 +21,54 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                         StatusBar.styleDefault();
                 }
         });
+
+})
+
+// configure logout functionality
+.run(function($rootScope, $state, $q, $ionicPopup) {
+
+        function back() {
+            window.history.back();
+        }
+
+        function logout() {
+                return $q(function(resolve, reject) {
+                        showPopUp().then(function(didLogOut) {
+                                if (didLogOut == true) {
+                                        $rootScope.user = "";
+                                        resolve($state.go("doctor-login"));
+                                } else {
+                                        reject();
+                                }
+                        });
+                });
+        }
+
+        function showPopUp() {
+                return $ionicPopup.show({
+                        title: 'You will lose all the data from this session.',
+                        subTitle: 'Do you wish to continue?',
+                        buttons: [
+                        {   
+                                text: 'Cancel',
+                                onTap: function(e) {
+                                        return false;
+                                }
+                        },
+                        {
+                                text: '<b>Continue</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                        return true;
+                                }
+                        }
+                        ]
+                });
+        };
+
+        $rootScope.logout = logout;
+        $rootScope.back = back;
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -30,39 +79,43 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         // Each state's controller can be found in controllers.js
         $stateProvider
 
-        .state('visit-confirmation', {
-                url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression',
-                templateUrl: 'templates/visit-confirmation.html',
-                controller: 'VisitConfirmationCtrl'
+                .state('visit-confirmation', {
+                        url: '/visit-confirmation/:total/:dsm/:trauma/:anxiety/:depression',
+                        templateUrl: 'templates/visit-confirmation.html',
+                        controller: 'VisitConfirmationCtrl'
+                })
+
+        .state('doctor-login', {
+                url: '/doctor-login',
+                templateUrl: 'templates/doctor-login.html',
+                controller: 'DoctorLoginCtrl'
         })
 
-        // abstract state for the tabs directive
-        .state('tab', {
-                url: '/tab',
-                abstract: true,
-                templateUrl: 'templates/tabs.html'
+        .state('patient-login', {
+                url: '/patient-login',
+                templateUrl: 'templates/patient-login.html',
+                controller: 'PatientLoginCtrl'
         })
 
-        .state('tab.disclaimer', {
+        .state('patient-overview', {
+                url: '/patient-overview',
+                templateUrl: 'templates/patient-overview.html',
+                controller: 'PatientOverviewCtrl'
+        })
+
+        .state('disclaimer', {
                 url: '/disclaimer',
-                views: {
-                        'tab-disclaimer': {
-                                templateUrl: 'templates/tab-disclaimer.html',
-                                controller: 'DisclaimerCtrl'
-                        }
-                }
+                templateUrl: 'templates/disclaimer.html',
+                controller: 'DisclaimerCtrl'
         })
 
-        .state('tab.patient-questions', {
+        .state('patient-questions', {
                 url: '/patient-questions',
-                views: {
-                        'tab-patient-questions': {
-                                templateUrl: 'templates/tab-patient-questions.html',
-                                controller: 'PatientQuestionsCtrl'
-                        }
-                }
+                templateUrl: 'templates/patient-questions.html',
+                controller: 'PatientQuestionsCtrl'
         });
 
+
         // if none of the above states are matched, use this as the fallback
-       $urlRouterProvider.otherwise('/tab/disclaimer');
+        $urlRouterProvider.otherwise('/doctor-login');
 });
